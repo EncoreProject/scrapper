@@ -1,8 +1,12 @@
+import logging
 from dataclasses import dataclass
-from typing import Tuple, Dict, Optional
+from typing import Tuple, Dict, Optional, List, Union
 
 from src.domain.enum import CardTypeEnum, CardTriggerEnum, CardSideEnum, CardColorEnum, LanguageEnum
+from src.domain.errors import CardTestError, CardTestWarning
 from src.domain.value_object import CardRarityInfoValueObject, CardTextValueObject
+
+LOGGER = logging.getLogger('basic_logger')
 
 
 @dataclass
@@ -29,6 +33,64 @@ class CardEntity:
     soul: Optional[int] = None
     special_attribute: Optional[Tuple[str]] = None
     text: Optional[Dict[LanguageEnum, CardTextValueObject]] = None
+
+    def _check_card_number(self):
+        if self.card_number is None:
+            LOGGER.error("Card number is None")
+            return
+
+        for language, card_number in self.card_number.items():
+            if card_number is None:
+                LOGGER.error(f"Card number value is None in language {language.value}")
+            # else:
+
+        # for card_number in self.card_number.values():
+        #    if card_number is None:
+        #        LOGGER
+
+    def _check_id(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_expansion(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_type(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_level(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_power(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_trigger(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_rarity(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_side(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_color(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_cost(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_soul(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_special_attribute(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def _check_text(self) -> List[Union[CardTestError, CardTestWarning]]:
+        pass
+
+    def check(self):
+        error_list = []
+
+        return error_list
 
     def get_jap_code(self):
         if LanguageEnum.JP in self.card_number:
