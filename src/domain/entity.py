@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Tuple, Dict, Optional, List, Union
 
 from src.domain.enum import CardTypeEnum, CardTriggerEnum, CardSideEnum, CardColorEnum, LanguageEnum
-from src.domain.errors import CardTestError, CardTestWarning
+from src.domain.errors import CardTestError
 from src.domain.value_object import CardRarityInfoValueObject, CardTextValueObject
 
 LOGGER = logging.getLogger('basic_logger')
@@ -26,7 +26,7 @@ class CardEntity:
     level: Optional[int] = None
     power: Optional[int] = None
     trigger: Optional[Tuple[CardTriggerEnum]] = None
-    rarity: Optional[Tuple[CardRarityInfoValueObject]] = None
+    rarity: Optional[List[CardRarityInfoValueObject]] = None
     side: Optional[CardSideEnum] = None
     color: Optional[CardColorEnum] = None
     cost: Optional[int] = None
@@ -48,43 +48,43 @@ class CardEntity:
         #    if card_number is None:
         #        LOGGER
 
-    def _check_id(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_id(self) -> List[CardTestError]:
         pass
 
-    def _check_expansion(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_expansion(self) -> List[CardTestError]:
         pass
 
-    def _check_type(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_type(self) -> List[CardTestError]:
         pass
 
-    def _check_level(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_level(self) -> List[CardTestError]:
         pass
 
-    def _check_power(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_power(self) -> List[CardTestError]:
         pass
 
-    def _check_trigger(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_trigger(self) -> List[CardTestError]:
         pass
 
-    def _check_rarity(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_rarity(self) -> List[CardTestError]:
         pass
 
-    def _check_side(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_side(self) -> List[CardTestError]:
         pass
 
-    def _check_color(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_color(self) -> List[CardTestError]:
         pass
 
-    def _check_cost(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_cost(self) -> List[CardTestError]:
         pass
 
-    def _check_soul(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_soul(self) -> List[CardTestError]:
         pass
 
-    def _check_special_attribute(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_special_attribute(self) -> List[CardTestError]:
         pass
 
-    def _check_text(self) -> List[Union[CardTestError, CardTestWarning]]:
+    def _check_text(self) -> List[CardTestError]:
         pass
 
     def check(self):
@@ -104,3 +104,6 @@ class CardEntity:
 
     def __hash__(self):
         return hash(self.get_jap_code())
+
+    def __eq__(self, other):
+        return self.get_jap_code() == other.get_jap_code()
