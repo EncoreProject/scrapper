@@ -1,4 +1,5 @@
 import logging
+import re
 from dataclasses import dataclass
 from typing import Tuple, Dict, Optional, List, Union
 
@@ -19,6 +20,8 @@ class ExpansionEntity:
 @dataclass
 class CardEntity:
     """Card Entity."""
+    _REGEXP_GENERIC_CODE = re.compile('^[A-Z]+/[A-Z]+[0-9]+-[0-9]+$')
+
     card_number: Dict[LanguageEnum, str]
     id: Optional[int] = None
     expansion: Optional[ExpansionEntity] = None
@@ -92,18 +95,17 @@ class CardEntity:
 
         return error_list
 
-    def get_jap_code(self):
-        if LanguageEnum.JP in self.card_number:
-            return self.card_number[LanguageEnum.JP]
-
+    def get_generic_code(self):
         card_number = list(self.card_number.values())[0]
-        index = card_number.find("-") + 1
+        if self._REGEXP_GENERIC_CODE.match(card_number):
+            return card_number
 
+        index = card_number.find("-") + 1
         jap_card_number = card_number[0:index] + card_number[index+1:]
         return jap_card_number
 
     def __hash__(self):
-        return hash(self.get_jap_code())
+        return hash(self.get_generic_code())
 
     def __eq__(self, other):
-        return self.get_jap_code() == other.get_jap_code()
+        return self.get_generic_code() == other.get_generic_code()
