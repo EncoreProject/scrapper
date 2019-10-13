@@ -1,4 +1,4 @@
-from src.repo.interface import ScrapperInterface
+from src.repo.scrapper.interface import ScrapperInterface
 
 
 class WeissSchwarzJapaneseScrapper(ScrapperInterface):

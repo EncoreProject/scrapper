@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from src.domain.enum import LanguageEnum, CardRarityEnum, CardExtraRarityEnum
 
@@ -7,8 +8,9 @@ from src.domain.enum import LanguageEnum, CardRarityEnum, CardExtraRarityEnum
 class CardRarityInfoValueObject:
     language: LanguageEnum
     rarity: CardRarityEnum
-    is_extra: CardExtraRarityEnum
+    extra: Optional[CardExtraRarityEnum]
     img: str
+
 
 
 @dataclass

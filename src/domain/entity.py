@@ -1,7 +1,7 @@
 import logging
 import re
 from dataclasses import dataclass
-from typing import Tuple, Dict, Optional, List, Union
+from typing import Tuple, Dict, Optional, List
 
 from src.domain.enum import CardTypeEnum, CardTriggerEnum, CardSideEnum, CardColorEnum, LanguageEnum
 from src.domain.errors import CardTestError
