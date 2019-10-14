@@ -1,3 +1,4 @@
+"""Enum"""
 from enum import Enum
 
 
