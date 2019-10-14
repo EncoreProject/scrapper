@@ -1,7 +1,8 @@
+"""JKTCG scrapper"""
 from src.repo.scrapper.interface import ScrapperInterface
 
 
 class JKTCGScrapper(ScrapperInterface):
-
-    def get_cards(self, url):
+    """JKTCG scrapper object"""
+    def get_cards(self, *, web_code: str):
         pass

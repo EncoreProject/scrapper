@@ -1,7 +1,8 @@
+"""Weiss Schwarz japanese scrapper"""
 from src.repo.scrapper.interface import ScrapperInterface
 
 
 class WeissSchwarzJapaneseScrapper(ScrapperInterface):
-
-    def get_cards(self, url):
+    """Weiss Schwarz japanese scrapper object"""
+    def get_cards(self, *, web_code):
         pass
