@@ -9,6 +9,8 @@ verify_ssl = true
 beautifulsoup4 = "*"
 pylint = "*"
 yapf = "*"
+requests = "*"
+html5lib = "*"
 
 [requires]
 python_version = "3.7"
@@ -17,3 +19,4 @@ python_version = "3.7"
 lint = "pylint --max-line-length 120 src tests"
 formatter = "yapf -i -r src tests"
 ci = "bash -c \"yapf -i -r src tests &&  pylint --max-line-length 120 src tests \""
+
